@@ -10,7 +10,7 @@
                     <p class="display-1 text--primary">
                         {{ listData.brdTitle }}
                     </p>
-                    <p>작성자 : {{ listData.brdWriter }} | 조회수 : {{ listData.brdHit }} | 작성시간 : {{ listData.brdRegDate }} | 수정시간 : {{ listData.brdEditDate }}</p>
+                    <p>작성자 : {{ listData.brdWriter }} | 조회수 : {{ listData.brdHit }} | 작성시간 : {{ getDateAndTime(listData.brdRegDate) }} | 수정시간 : {{ getDateAndTime(listData.brdEditDate) }}</p>
                     <div class="text--primary">
                         {{ listData.brdContent }}
                     </div>
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import { dateFormat } from "../mixins/dateFormat"
 export default {
     data() {
         return {
@@ -68,11 +69,12 @@ export default {
     },
     methods: {
         del() {
-            this.$firebase.database().ref().child(this.$route.params.id).remove();
+            this.$firebase.database().ref().child(this.uniKey).remove();
             this.$router.push({
                 name: 'list'
             });
         }
     },
+    mixins: [dateFormat]
 }
 </script>
