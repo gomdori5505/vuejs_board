@@ -55,8 +55,9 @@ export default {
                     brdRegDate: this.getDateAndTime(new Date),
                     brdEditDate: this.getDateAndTime(new Date),
                     brdHit: 0
+                    
                 });
-
+                
                 this.$router.push({
                     name: 'list'
                 });
