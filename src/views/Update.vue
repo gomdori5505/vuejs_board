@@ -28,9 +28,7 @@
                 <v-btn @click="update()">수정</v-btn>
             </v-form>
         </v-flex>
-        
     </v-layout>
-    <!-- {{ $route.params.id }} -->
 </template>
 
 <script>
@@ -39,7 +37,6 @@ export default {
     data() {
         return {
             uniKey: this.$route.params.id,
-            currentListData: {},
             brdTitle: null,
             brdWriter: null,
             brdContent: null,
@@ -48,7 +45,6 @@ export default {
     created() {
         this.$firebase.database().ref().child(this.uniKey).on('value', (sn) => {
             const listData = sn.val();
-            this.currentListData = listData;
             this.brdTitle = listData.brdTitle;
             this.brdWriter = listData.brdWriter;
             this.brdContent = listData.brdContent;
