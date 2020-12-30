@@ -35,6 +35,7 @@
                     <v-btn
                         depressed
                         color="error"
+                        @click="del()"
                     >
                         삭제
                     </v-btn>
@@ -57,8 +58,15 @@ export default {
         this.$firebase.database().ref().child(this.$route.params.id).on('value', (sn) => {
             const listData = sn.val();
             this.listData = listData;
-            console.log(listData);
         });
+    },
+    methods: {
+        del() {
+            this.$firebase.database().ref().child(this.$route.params.id).remove();
+            this.$router.push({
+                name: 'list'
+            });
+        }
     },
 }
 </script>
