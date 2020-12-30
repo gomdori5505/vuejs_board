@@ -6,7 +6,7 @@
                 :headers="headers"
                 :items="boardLists"
                 :items-per-page="5"
-                class="elevation-1"
+                class="elevation-1 ma-10"
                 >
             </v-data-table>
         </v-flex>

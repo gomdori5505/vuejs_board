@@ -3,13 +3,19 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const List = () => import(/* webpackChunkName: "list" */ '../views/List.vue');
+const List = () => import(/* webpackChunkName: "list" */ '../views/List.vue'),
+Create = () => import(/* webpackChunkName: "create" */ '../views/Create.vue');
 
 const routes = [
   {
     path: '/',
     name: 'list',
     component: List
+  },
+  {
+    path: '/create',
+    name: 'create',
+    component: Create
   }
 ]
 
