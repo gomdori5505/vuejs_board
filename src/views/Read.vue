@@ -18,7 +18,6 @@
                 <v-card-actions class="px-10">
                     <v-btn
                         depressed
-                        link
                         router :to='{
                             name: "list"
                         }'
@@ -29,6 +28,13 @@
                     <v-btn
                         depressed
                         color="primary"
+                        router :to='{
+                            name: "update",
+                            params: {
+                                id: uniKey
+                            }
+                        }'
+                        exact
                     >
                         수정
                     </v-btn>
@@ -55,7 +61,7 @@ export default {
         }
     },
     created() {
-        this.$firebase.database().ref().child(this.$route.params.id).on('value', (sn) => {
+        this.$firebase.database().ref().child(this.uniKey).on('value', (sn) => {
             const listData = sn.val();
             this.listData = listData;
         });

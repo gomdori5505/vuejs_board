@@ -5,7 +5,8 @@ Vue.use(VueRouter)
 
 const List = () => import(/* webpackChunkName: "list" */ '../views/List.vue'),
 Create = () => import(/* webpackChunkName: "create" */ '../views/Create.vue'),
-Read = () => import(/* webpackChunkName: "read" */ '../views/Read.vue');
+Read = () => import(/* webpackChunkName: "read" */ '../views/Read.vue'),
+Update = () => import(/* webpackChunkName: "update" */ '../views/Update.vue');
 
 const routes = [
   {
@@ -22,6 +23,11 @@ const routes = [
     path: '/read/:id',
     name: 'read',
     component: Read
+  },
+  {
+    path: '/update/:id',
+    name: 'update',
+    component: Update
   }
 ]
 

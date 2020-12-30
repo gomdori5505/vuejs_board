@@ -1,5 +1,10 @@
 export const dateFormat = {
     methods: {
+        getTimestamp() {
+            const now = new Date();
+            const timestamp = now.getTime();
+            return timestamp;
+        },
         getDateAndTime(timestamp) {
             if(timestamp !== null) {
                 const year = new Date(timestamp).getFullYear(),
