@@ -52,10 +52,9 @@ export default {
                     brdTitle: this.brdTitle,
                     brdWriter: this.brdWriter,
                     brdContent: this.brdContent,
-                    brdRegDate: this.getDateAndTime(new Date),
-                    brdEditDate: this.getDateAndTime(new Date),
+                    brdRegDate: this.getTimestamp(),
+                    brdEditDate: this.getTimestamp(),
                     brdHit: 0
-                    
                 });
                 
                 this.$router.push({
