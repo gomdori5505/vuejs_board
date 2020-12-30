@@ -5,10 +5,19 @@
             <v-data-table
                 :headers="headers"
                 :items="boardLists"
-                :items-per-page="5"
+                :page.sync="page"
+                :items-per-page="itemsPerPage"
+                hide-default-footer
                 class="elevation-1 ma-10"
+                @page-count="pageCount = $event"
                 >
             </v-data-table>
+            <div class="text-center pt-2">
+                <v-pagination
+                    v-model="page"
+                    :length="pageCount"
+                ></v-pagination>
+            </div>
         </v-flex>
     </v-layout>
 </template>
@@ -18,6 +27,9 @@
     export default {
         data () {
             return {
+                page: 1,
+                pageCount: 0,
+                itemsPerPage: 5,
                 headers: [
                     {
                         text: '번호',
