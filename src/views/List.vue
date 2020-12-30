@@ -10,7 +10,17 @@
                 hide-default-footer
                 class="elevation-1 ma-10"
                 @page-count="pageCount = $event"
-                >
+            >
+                <template #item.brdTitle="{ item }">
+                    <a @click="$router.push({
+                        name: 'read',
+                        params: {
+                            id: item.brdUniKey
+                        }
+                    })">
+                        {{ item.brdTitle }}
+                    </a>
+                </template>
             </v-data-table>
             <div class="text-center pt-2">
                 <v-pagination
@@ -66,13 +76,15 @@
             this.$firebase.database().ref().on('value', (sn) => {
                 var index = 1;
                 const listData = sn.val();
+                
                 for (const uniKey in listData) {
                     listData[uniKey].brdNum = index;
                     listData[uniKey].brdRegDate = this.getDateAndTime(listData[uniKey].brdRegDate);
+                    listData[uniKey].brdUniKey = uniKey;
                     this.boardLists.unshift(listData[uniKey]);
                     index++;
-                }
-            })
+                }                
+            });
         },
         mixins: [dateFormat]
     }
