@@ -1,9 +1,7 @@
 # vuejs_board
 
 ## Deploy to github page
-```
 https://gomdori5505.github.io/vuejs_board/
-```
 
 ## Project setup
 ```
