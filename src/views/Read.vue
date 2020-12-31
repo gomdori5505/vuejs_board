@@ -62,7 +62,6 @@ export default {
         }
     },
     beforeRouteEnter (to, from, next) {
-        console.log("beforeRouteEnter : " + from.name);
         if(from.name === "update" || from.name === null) {
             next(vm => {
                 vm.increaseHit = false;

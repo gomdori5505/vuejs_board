@@ -52,7 +52,7 @@ export default {
     },
     methods: {
         update() {
-            if(this.brdTitle === null || this.brdWriter === null || this.brdContent === null) {
+            if(this.brdTitle == "" || this.brdWriter == "" || this.brdContent == "") {
                 alert("please fill in the blank!");
             } else {           
                 this.$firebase.database().ref().child(this.uniKey).update({
