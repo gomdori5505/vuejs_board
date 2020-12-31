@@ -28,6 +28,13 @@ const routes = [
     path: '/update/:id',
     name: 'update',
     component: Update
+  },
+  // 존재하지않는 path일때 리다이렉트
+  {
+    path: '/*',
+    redirect: {
+      name: 'list'
+    }
   }
 ]
 
