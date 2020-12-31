@@ -11,9 +11,7 @@
                         {{ listData.brdTitle }}
                     </p>
                     <p>작성자 : {{ listData.brdWriter }} | 조회수 : {{ listData.brdHit }} | 작성시간 : {{ getDateAndTime(listData.brdRegDate) }} | 수정시간 : {{ getDateAndTime(listData.brdEditDate) }}</p>
-                    <div class="text--primary">
-                        {{ listData.brdContent }}
-                    </div>
+                    <div class="text--primary text-left" v-html="brdContent"></div>
                 </v-card-text>
                 <v-card-actions class="px-10">
                     <v-btn
@@ -58,13 +56,15 @@ export default {
     data() {
         return {
             uniKey: this.$route.params.id,
-            listData: {}
+            listData: {},
+            brdContent: null
         }
     },
     created() {
         this.$firebase.database().ref().child(this.uniKey).on('value', (sn) => {
             const listData = sn.val();
             this.listData = listData;
+            this.brdContent = this.listData.brdContent.replace(/(?:\r\n|\r|\n)/g, '<br />');
         });
     },
     methods: {
