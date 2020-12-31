@@ -57,15 +57,33 @@ export default {
         return {
             uniKey: this.$route.params.id,
             listData: {},
-            brdContent: null
+            brdContent: null,
+            increaseHit: true
         }
     },
-    created() {
+    beforeRouteEnter (to, from, next) {
+        console.log("beforeRouteEnter : " + from.name);
+        if(from.name === "update" || from.name === null) {
+            next(vm => {
+                vm.increaseHit = false;
+            });
+        } else {
+            next();
+        }
+    },
+    mounted() {
         this.$firebase.database().ref().child(this.uniKey).on('value', (sn) => {
             const listData = sn.val();
             this.listData = listData;
             this.brdContent = this.listData.brdContent.replace(/(?:\r\n|\r|\n)/g, '<br />');
         });
+
+        if(this.increaseHit === true) {
+            // update the 1 hit
+            this.$firebase.database().ref().child(this.uniKey).update({
+                brdHit: this.listData.brdHit + 1
+            });
+        }
     },
     methods: {
         del() {
